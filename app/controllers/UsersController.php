@@ -16,6 +16,11 @@ class UsersController extends BaseController {
 		$this->layout->content = View::make('users.login');
 	}
 
+	public function getLogout() {
+    	Auth::logout();
+		return Redirect::to('users/login')->with('message', '成功退出登录！');
+	}
+
 	public function getRegister() {
 	   $this->layout->content = View::make('users.register');
 	}
