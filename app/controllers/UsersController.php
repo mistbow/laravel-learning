@@ -5,6 +5,11 @@ class UsersController extends BaseController {
 
 	public function __construct() {
 		$this->beforeFilter('csrf', array('on'=>'post'));
+		$this->beforeFilter('auth', array('only'=>array('getDashboard')));
+	}
+
+	public function getDashboard() {
+    	$this->layout->content = View::make('users.dashboard');
 	}
 
 	public function getLogin() {
@@ -13,6 +18,16 @@ class UsersController extends BaseController {
 
 	public function getRegister() {
 	   $this->layout->content = View::make('users.register');
+	}
+
+	public function postSignin() {
+        if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
+			return Redirect::to('users/dashboard')->with('message', '登录成功!');
+		} else {
+			return Redirect::to('users/login')
+				->with('message', '密码错误')
+				->withInput();
+		}
 	}
 
 	public function postCreate() {
