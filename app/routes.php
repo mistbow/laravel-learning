@@ -14,6 +14,11 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+Route::get('password_resets/reset/{token}', 'PasswordResetsController@reset');
+
+Route::post('password_resets/reset/{token}', 'PasswordResetsController@postReset');
+
+Route::resource('password_resets', 'PasswordResetsController');
 
 Route::controller('users', 'UsersController');
 

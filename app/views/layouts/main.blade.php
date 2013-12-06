@@ -30,8 +30,7 @@
       @endif
     </div>
 
-    {{ $content }}
-
+    @yield('content')
     
   </body>
 </html>
