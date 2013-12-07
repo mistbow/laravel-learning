@@ -1,36 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	{{ HTML::style('packages/bootstrap/css/bootstrap.min.css') }}
-	{{ HTML::style('css/main.css')}}
-    <title>Authentication App With Laravel 4</title>
-  </head>
+@include('components.page_head')
  
-  <body>
- 	<div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-         <div class="container">
-            <ul class="nav">  
-              @if(!Auth::check())
-                 <li>{{ HTML::link('users/register', 'Register') }}</li>   
-                 <li>{{ HTML::link('users/login', 'Login') }}</li>   
-              @else
-                 <li>{{ HTML::link('users/logout', 'logout') }}</li>
-              @endif
-            </ul>  
-         </div>
-      </div>
-   </div> 
+<body>
 
-   <div class="container">
-      @if(Session::has('message'))
-         <p class="alert">{{ Session::get('message') }}</p>
-      @endif
-    </div>
+@include('components.page_nav')
 
-    @yield('content')
-    
-  </body>
-</html>
+<div class="container">
+  @if(Session::has('message'))
+      <p class="alert">{{ Session::get('message') }}</p>
+  @else
+    <div class="alert alert-info">
+      <a href="/">6bey又一次蛋疼的改版界面了</a>
+    </div> 
+  @endif
+        
+    <div class="row">
+            <div class="span9">
+                    <div class="content-unit">
+                      @include('components.page_sort')
+                                @yield('content')
+                        </div><!-- end content-unit -->
+                </div> <!-- end span9 -->
+                <div class="span3 sidebar">
+                  @include('components.page_sidebar')
+                </div><!-- end span3 -->
+        </div><!-- end row-->
+</div><!-- end container -->
+@include('components.page_tail')
