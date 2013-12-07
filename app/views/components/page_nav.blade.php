@@ -26,7 +26,7 @@
                       {{ HTML::link('/', '习题库') }}
                     </li>
             </ul>
-            @if(!Auth::check())
+            @if(Auth::check())
             <ul class="nav pull-right">
                     <li class="dropdown">
                     <a class="dropdown-toggle" href="http://www.6bey.com//active/message">
