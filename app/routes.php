@@ -10,10 +10,8 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', 'TopicsController@index');
+
 Route::get('password_resets/reset/{token}', 'PasswordResetsController@reset');
 
 Route::post('password_resets/reset/{token}', 'PasswordResetsController@postReset');
@@ -22,3 +20,4 @@ Route::resource('password_resets', 'PasswordResetsController');
 
 Route::controller('users', 'UsersController');
 
+Route::resource('topics', 'TopicsController');
