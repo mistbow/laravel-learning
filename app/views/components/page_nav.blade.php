@@ -14,7 +14,7 @@
                       {{ HTML::link('/', '首页') }}
                     </li>
                     <li class="active">
-                      {{ HTML::link('/', '讨论区') }}
+                      {{ HTML::link('/topics', '讨论区') }}
                     </li>
                     <li class="active">
                       {{ HTML::link('/', '问答社区') }}
@@ -61,10 +61,10 @@
             @else
               <ul class="nav pull-right">
                       <li>
-                        {{ HTML::link('/', '注册') }}
+                        {{ HTML::link('/users/login', '登录') }}
                       </li>
-                      <li>
-                        {{ HTML::link('/', '登录') }}
+                       <li>
+                        {{ HTML::link('/users/register', '注册') }}
                       </li>
               </ul>
             @endif
