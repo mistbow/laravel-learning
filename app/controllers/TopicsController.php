@@ -29,6 +29,10 @@ class TopicsController extends BaseController {
 	 */
 	public function store()
 	{
+
+		if(! Topic::isValid(Input::all())) {
+			return Redirect::back()->withInput()->withErrors(Topic::$errors);
+		}
 		$topic = new Topic;
 
 		$topic->title = Input::get('title');

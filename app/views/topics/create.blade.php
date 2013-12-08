@@ -7,10 +7,12 @@
 		<div>
 			{{ Form::label('title', '标题：') }}
 			{{ Form::text('title')}}
+			{{ $errors->first('title')}}
 		</div>
 		<div>
 			{{ Form::label('body', '正文：') }}
 			{{ Form::textarea('body')}}
+			{{ $errors->first('body')}}
 		</div>
 
 		<div>{{ Form::submit('提交') }}</div>
