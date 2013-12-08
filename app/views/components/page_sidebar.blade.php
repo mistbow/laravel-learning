@@ -1,5 +1,5 @@
 <div class="siderbar-unit" style="text-align:center;">
-    {{ HTML::link('/', '发布新帖', array('class' => 'btn btn-success')) }}
+    {{ HTML::link('/topics/create', '发布新帖', array('class' => 'btn btn-success')) }}
 </div> <!-- end siderbar-unit -->
 
 <div class="siderbar-unit" style="text-align:center;">

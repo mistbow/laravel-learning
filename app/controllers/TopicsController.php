@@ -2,6 +2,12 @@
 
 class TopicsController extends BaseController {
 
+	protected $topic;
+
+	public function __construct(Topic $topic)
+	{
+		$this->topic = $topic;
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,7 +15,8 @@ class TopicsController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('topics.index');
+		$topics = Topic::paginate(10);
+        return View::make('topics.index')->withTopics($topics);
 	}
 
 	/**
@@ -30,16 +37,15 @@ class TopicsController extends BaseController {
 	public function store()
 	{
 
-		if(! Topic::isValid(Input::all())) {
-			return Redirect::back()->withInput()->withErrors(Topic::$errors);
+		$input = Input::all();
+
+		if(! $this->topic->fill($input)->isValid()) {
+			return Redirect::back()->withInput()->withErrors($this->topic->errors);
 		}
-		$topic = new Topic;
 
-		$topic->title = Input::get('title');
-		$topic->body = Input::get('body');
-		$topic->reply_at = time();
-
-		$topic->save();
+		$this->topic->reply_at = new DateTime;
+		$this->topic->save();
+		
 		return Redirect::route('topics.index');
 	}
 
